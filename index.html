@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14213d">
+<title>Contractor Corner — Quotes, invoices &amp; profit for solo contractors</title>
+<meta name="description" content="Contractor Corner: send a quote from your phone, turn it into an invoice with one tap, take payment, and see if the job made money. For handyman, lawn, cleaning and every solo trade. Free for 5 jobs a month.">
+<style>
+:root{--navy:#14213d;--navy2:#1d3557;--amber:#fca311;--amber2:#ffb703;--paper:#f4f1ea;--card:#ffffff;--ink:#1a1a1a;--muted:#6b7280;--green:#1a7f37;--red:#c0392b;--line:#e5e0d5}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.45}
+header{background:var(--navy);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:20}
+header .row{display:flex;align-items:center;gap:10px;max-width:960px;margin:0 auto}
+.logo{font-size:22px;font-weight:800}.logo span{color:var(--amber)}
+header p{margin:2px 0 0;font-size:13px;color:#dbe4f0}
+.view-toggle{margin-left:auto;display:flex;gap:6px}
+.view-toggle button{background:transparent;border:1px solid #8aa0c2;color:#fff;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.view-toggle button.on{background:var(--amber);border-color:var(--amber);color:#14213d;font-weight:700}
+main{max-width:960px;margin:0 auto;padding:16px 14px 110px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+h1{font-size:24px;margin:0 0 6px}h2{font-size:19px;margin:0 0 8px}h3{font-size:16px;margin:14px 0 6px}
+p{margin:6px 0}.small{font-size:13px;color:var(--muted)}.muted{color:var(--muted)}
+button,.btn{font:inherit;cursor:pointer;border-radius:10px;border:0;padding:12px 16px;font-weight:700}
+.btn-primary{background:var(--amber);color:#14213d;width:100%}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-ghost{background:#eef1f6;color:var(--navy)}
+.btn-danger{background:#fdecea;color:var(--red)}
+.btn-small{padding:8px 12px;font-size:14px;width:auto}
+input,select,textarea{font:inherit;width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;margin:4px 0 10px;background:#fff}
+label{font-weight:700;font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:640px){.statrow{grid-template-columns:repeat(2,1fr)}}
+.stat{background:#f8f5ef;border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat b{font-size:20px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.job{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#fff}
+.job .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eef1f6;color:var(--navy)}
+.pill.lead{background:#fff3cd}.pill.estimate{background:#e0e7ff}.pill.approved{background:#d1fae5}.pill.scheduled{background:#dbeafe}.pill.done{background:#ede9fe}.pill.paid{background:#dcfce7;color:#166534}
+.profit{font-weight:800}.profit.good{color:var(--green)}.profit.bad{color:var(--red)}
+.guess{background:#fff8e1;border:1px dashed #d97706;border-radius:8px;padding:8px;font-size:13px;margin:6px 0}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:20}
+.tabs button{flex:1;background:none;border:0;padding:12px 4px 14px;font-size:13px;color:var(--navy);font-weight:700}
+.tabs button.on{color:#b45309;border-top:3px solid var(--amber)}
+.hidden{display:none!important}
+.photos{display:flex;gap:8px;flex-wrap:wrap}.photos img{width:84px;height:84px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.hero{background:var(--navy);color:#fff;border-radius:14px;padding:20px 16px;margin-bottom:14px}
+.hero h1{color:#fff}.hero p{color:#dbe4f0}
+.check{list-style:none;padding:0;margin:8px 0}.check li{padding:4px 0}.check li:before{content:"✓ ";color:var(--green);font-weight:800}
+.banner{background:#fff3cd;border:1px solid #f59e0b;border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+.field body,.field main{font-size:18px}
+body.field .btn,body.field button{padding:16px 18px;font-size:18px}
+body.field input,body.field select,body.field textarea{padding:16px;font-size:18px}
+body.field .card{padding:20px}
+.note{font-size:13px;background:#f8f5ef;border-left:4px solid var(--amber);padding:8px 10px;border-radius:0 8px 8px 0}
+footer{max-width:960px;margin:0 auto;padding:0 16px 120px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header><div class="row">
+<div><div class="logo">Contractor <span>Corner</span></div><p>Quotes, invoices &amp; profit — for every solo trade</p></div>
+<div class="view-toggle" id="viewToggle">
+<button id="btnField" onclick="setView('field')">🔧 Field view</button>
+<button id="btnOffice" class="on" onclick="setView('office')">🗂️ Office view</button>
+</div></div></header>
+<main id="app"></main>
+<footer>Contractor Corner v1 — free for 5 jobs a month. Paid is $19 a month for early members, $29 a month after that (planned price — no charge today). Payments: when live card payments are added, Stripe takes about 2.9% + 30¢ per payment. Your jobs on this version are saved on this device only.</footer>
+<nav class="tabs hidden" id="tabs">
+<button data-tab="jobs" class="on" onclick="showTab('jobs')">📋 Jobs</button>
+<button data-tab="new" onclick="showTab('new')">＋ New job</button>
+<button data-tab="calendar" onclick="showTab('calendar')">📅 Calendar</button>
+<button data-tab="customers" onclick="showTab('customers')">👥 Customers</button>
+<button data-tab="plan" onclick="showTab('plan')">⭐ Plan</button>
+</nav>
+<script>
+/* Contractor Corner v1 — all data saved in this browser (localStorage). No server, no Stripe charges in v1. */
+const FREE_LIMIT=5, FOUNDING=19, REGULAR=29;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'$'+(Number(n)||0).toFixed(2);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let user=load('cc_session',null);
+let jobs=load('cc_jobs',[]);
+let view=load('cc_view','office');
+let tab='jobs', openJob=null, editing=null;
+const STATUSES=['Lead','Estimate Sent','Approved','Scheduled','Done','Paid'];
+const TRADES=['Handyman','Lawn & garden','Cleaning','Painting','Plumbing','Electrical','Other'];
+const SUGGESTED={'Handyman':[['Labour — first hour',85],['Labour — extra hours',65],['Materials (estimate)',120],['Fixings & consumables',25]],'Lawn & garden':[['Mow & trim',60],['Hedge trim',75],['Green waste removal',40]],'Cleaning':[['Deep clean — kitchen',90],['Deep clean — bathroom',70],['General clean per room',45]],'Painting':[['Prep & masking',80],['Paint — 2 coats, per room',180],['Paint & supplies',95]],'Plumbing':[['Call-out & check',75],['Parts (estimate)',90],['Labour per hour',70]],'Electrical':[['Call-out & check',85],['Parts (estimate)',100],['Labour per hour',75]],'Other':[['Labour',80],['Materials (estimate)',100]]};
+function monthKey(d){const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')}
+function jobsThisMonth(){const k=monthKey(Date.now());return jobs.filter(j=>monthKey(j.createdAt)===k)}
+function isPaid(){return user&&user.plan==='paid'}
+function profit(j){return (Number(j.price)||0)-(Number(j.materials)||0)-((Number(j.hours)||0)*(Number(j.rate)||0))}
+function owed(j){return Math.max(0,(Number(j.price)||0)-(Number(j.paidAmount)||0))}
+function setView(v){view=v;save('cc_view',v);document.body.classList.toggle('field',v==='field');$('#btnField').classList.toggle('on',v==='field');$('#btnOffice').classList.toggle('on',v==='office');render()}
+function showTab(t){tab=t;openJob=null;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));render()}
+function signOut(){user=null;save('cc_session',null);render()}
+function demoData(){
+  if(jobs.length) return;
+  const now=Date.now();
+  jobs=[
+   {id:uid(),customer:'Example — Mrs Patel',phone:'816-555-0142',address:'12 Oak Street, Kansas City',trade:'Handyman',title:'Fix back gate & replace hinge',desc:'Gate is sagging, hinge rusted through.',status:'Approved',date:new Date(now+86400000).toISOString().slice(0,10),materials:38,hours:2,rate:65,price:240,deposit:120,paidAmount:120,photosBefore:[],photosAfter:[],items:[{label:'Labour — 2 hours',amount:130},{label:'New hinge & screws',amount:38,guessed:true}],createdAt:now},
+   {id:uid(),customer:'Example — Mr Cole',phone:'816-555-0198',address:'48 Maple Ave, Kansas City',trade:'Lawn & garden',title:'Mow, trim & tidy front garden',desc:'Fortnightly cut.',status:'Done',date:new Date(now-86400000).toISOString().slice(0,10),materials:0,hours:1.5,rate:55,price:95,deposit:0,paidAmount:95,photosBefore:[],photosAfter:[],items:[{label:'Mow & trim',amount:95}],createdAt:now}
+  ];save('cc_jobs',jobs);
+}
+</script>
+<script>
+/* ---------- Auth / landing ---------- */
+function render(){
+  document.body.classList.toggle('field',view==='field');
+  const app=$('#app'), tabs=$('#tabs');
+  if(!user){ tabs.classList.add('hidden'); app.innerHTML=landing(); return; }
+  tabs.classList.remove('hidden');
+  if(tab==='jobs') app.innerHTML=jobsView();
+  else if(tab==='new') app.innerHTML=newJobView();
+  else if(tab==='calendar') app.innerHTML=calendarView();
+  else if(tab==='customers') app.innerHTML=customersView();
+  else if(tab==='plan') app.innerHTML=planView();
+  else if(tab==='job') app.innerHTML=jobView();
+  else if(tab==='invoice') app.innerHTML=invoiceView();
+}
+function landing(){
+  return `<div class="hero"><h1>Your whole job, in your pocket.</h1>
+  <p>Send a quote from your phone. Turn it into an invoice with one tap. Get paid. See if the job actually made money.</p>
+  <ul class="check"><li>Handyman, lawn, cleaning — any solo trade</li><li>Free for 5 jobs a month, no card needed</li><li>Field view for the worker, office view for the paperwork</li></ul></div>
+  <div class="card"><h2>Create your account — free</h2>
+  <p class="small">Anyone can sign up. No invite code. You land on Free automatically.</p>
+  <label>Your name</label><input id="suName" placeholder="e.g. Jeremy">
+  <label>Business name (optional)</label><input id="suBiz" placeholder="e.g. Better Than Your Husband">
+  <label>Email</label><input id="suEmail" type="email" placeholder="you@example.com">
+  <label>Password</label><input id="suPass" type="password" placeholder="Choose a password">
+  <button class="btn-primary" onclick="signUp()">Create free account</button>
+  <p class="small" style="text-align:center;margin-top:10px">Already have an account? <a href="#" onclick="showSignIn();return false">Sign in</a> · <a href="#" onclick="tryDemo();return false">Try a demo first</a></p>
+  <div id="authMsg"></div></div>
+  <div class="card"><h2>How it works</h2>
+  <p><b>1. Quote it.</b> Snap photos, talk through the job, send the estimate. The customer taps approve.</p>
+  <p><b>2. Invoice it.</b> One tap turns the quote into an invoice — no retyping. Deposit or full amount.</p>
+  <p><b>3. Get paid &amp; know your profit.</b> Record the payment, see who still owes, and see profit per job: price minus materials minus your time.</p>
+  <p class="small">Free: 5 jobs a month. Paid ($19 early / $29 regular, planned price): unlimited jobs, missed-call text-back, late-payment reminders, automatic review asks, full calendar &amp; customer list.</p></div>`;
+}
+function showSignIn(){
+  $('#app').querySelector('.card').innerHTML=`<h2>Sign in</h2>
+  <label>Email</label><input id="siEmail" type="email">
+  <label>Password</label><input id="siPass" type="password">
+  <button class="btn-primary" onclick="signIn()">Sign in</button>
+  <p class="small"><a href="#" onclick="render();return false">Back to sign up</a></p><div id="authMsg"></div>`;
+}
+function signUp(){
+  const name=$('#suName').value.trim(), email=$('#suEmail').value.trim().toLowerCase(), pass=$('#suPass').value;
+  if(!name||!email||!pass){$('#authMsg').innerHTML='<p style="color:#c0392b">Please fill in your name, email and a password.</p>';return}
+  const users=load('cc_users',[]);
+  if(users.find(u=>u.email===email)){$('#authMsg').innerHTML='<p style="color:#c0392b">That email already has an account — try signing in.</p>';return}
+  user={name,biz:$('#suBiz').value.trim(),email,pass,plan:'free',createdAt:Date.now()};
+  users.push(user);save('cc_users',users);save('cc_session',user);render();
+}
+function signIn(){
+  const email=$('#siEmail').value.trim().toLowerCase(), pass=$('#siPass').value;
+  const u=load('cc_users',[]).find(u=>u.email===email&&u.pass===pass);
+  if(!u){$('#authMsg').innerHTML='<p style="color:#c0392b">Email or password did not match. Try again, or create a free account.</p>';return}
+  user=u;save('cc_session',user);render();
+}
+function tryDemo(){
+  user={name:'Demo user',biz:'Demo Contracting',email:'demo@contractorcorner.app',plan:'free',demo:true};
+  save('cc_session',user);demoData();render();
+}
+/* ---------- Jobs list ---------- */
+function jobsView(){
+  const thisMonth=jobsThisMonth().length;
+  const totalOwed=jobs.reduce((s,j)=>s+owed(j),0);
+  const totalProfit=jobs.reduce((s,j)=>s+profit(j),0);
+  const left=Math.max(0,FREE_LIMIT-thisMonth);
+  return `<div class="card"><h2>Hi ${esc(user.name)} 👋</h2>
+  <p class="muted">${esc(user.biz||'Your contracting business')} · Plan: <b>${isPaid()?'Paid':'Free'}</b> · ${isPaid()?'Unlimited jobs':left+' of '+FREE_LIMIT+' free jobs left this month'}</p>
+  <div class="statrow">
+   <div class="stat"><b>${jobs.length}</b><span>Jobs total</span></div>
+   <div class="stat"><b>${money(totalOwed)}</b><span>Still owed to you</span></div>
+   <div class="stat"><b class="${totalProfit>=0?'profit good':'profit bad'}">${money(totalProfit)}</b><span>Profit so far</span></div>
+   <div class="stat"><b>${jobs.filter(j=>j.status!=='Paid').length}</b><span>Jobs not paid yet</span></div>
+  </div></div>
+  ${!isPaid()&&left===0?`<div class="banner"><b>Free limit reached:</b> you've used all ${FREE_LIMIT} free jobs this month. Upgrade to Paid for unlimited jobs — $19 a month for early members, $29 after that. <button class="btn-small btn-navy" onclick="showTab('plan')">See Paid</button></div>`:''}
+  <div class="card"><h2>Your jobs</h2>
+  ${jobs.length===0?`<p>No jobs yet. Tap <b>＋ New job</b> below — it takes about a minute.</p><p class="small">Tip: start with the customer's name, what needs doing, and a rough price. You can add photos and exact costs later.</p>`:
+   jobs.slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).map(j=>`
+   <div class="job"><div class="top"><div><b>${esc(j.title)}</b><br><span class="muted">${esc(j.customer)} · ${esc(j.trade)}</span></div>
+   <span class="pill ${j.status.toLowerCase().replace(' ','')}">${esc(j.status)}</span></div>
+   <p>Price ${money(j.price)} · Paid ${money(j.paidAmount)} · Still owed <b>${money(owed(j))}</b><br>
+   Profit: <span class="profit ${profit(j)>=0?'good':'bad'}">${money(profit(j))}</span>${j.date?` · 📅 ${esc(j.date)}`:''}</p>
+   <button class="btn-small btn-navy" onclick="openJobId('${j.id}')">Open job</button>
+   <button class="btn-small btn-ghost" onclick="openInvoice('${j.id}')">Invoice</button></div>`).join('')}
+  </div>
+  <button class="btn-primary" onclick="showTab('new')">＋ New job</button>
+  <p class="small" style="text-align:center"><a href="#" onclick="exportCSV();return false">Download all jobs as a spreadsheet (CSV)</a> · <a href="#" onclick="signOut();return false">Sign out</a></p>`;
+}
+function openJobId(id){openJob=jobs.find(j=>j.id===id);tab='job';render()}
+function openInvoice(id){openJob=jobs.find(j=>j.id===id);tab='invoice';render()}
+/* ---------- New job / quote ---------- */
+function newJobView(){
+  const left=FREE_LIMIT-jobsThisMonth().length;
+  if(!isPaid()&&left<=0) return `<div class="card"><h2>Free limit reached</h2><p>You've used all ${FREE_LIMIT} free jobs this month. Upgrade to Paid for unlimited jobs.</p><button class="btn-primary" onclick="showTab('plan')">See Paid plan</button><p><button class="btn-ghost" onclick="showTab('jobs')">Back to jobs</button></p></div>`;
+  return `<div class="card"><h2>New job — send a quote</h2>
+  <p class="small">Field view: snap photos, talk through the job, keep it short. Office view: fill in the numbers, check the draft, then send. Nothing is sent to the customer until you tap <b>Send estimate</b>.</p>
+  ${!isPaid()?`<p class="banner">Free job ${jobsThisMonth().length+1} of ${FREE_LIMIT} this month.</p>`:''}
+  <label>Customer name</label><input id="njCustomer" placeholder="e.g. Mrs Patel">
+  <div class="grid2"><div><label>Phone</label><input id="njPhone" placeholder="e.g. 816-555-0142"></div>
+  <div><label>Trade</label><select id="njTrade">${TRADES.map(t=>`<option>${t}</option>`).join('')}</select></div></div>
+  <label>Address</label><input id="njAddress" placeholder="Street, town">
+  <label>What needs doing? (job title)</label><input id="njTitle" placeholder="e.g. Fix back gate & replace hinge">
+  <label>Details — talk it through, or type it</label><textarea id="njDesc" rows="3" placeholder="What did you see? What needs fixing or doing?"></textarea>
+  <button class="btn-small btn-ghost" onclick="recordVoice()">🎙️ Record a voice note (60 seconds)</button> <span id="voiceStatus" class="small"></span>
+  <div class="grid2"><div><label>When? (date)</label><input id="njDate" type="date"></div>
+  <div><label>Your price for the job ($)</label><input id="njPrice" type="number" min="0" step="1" placeholder="e.g. 240"></div></div>
+  <div class="grid2"><div><label>Materials will cost about ($)</label><input id="njMaterials" type="number" min="0" step="1" placeholder="e.g. 38"></div>
+  <div><label>Your time: hours × $ per hour</label><div class="grid2"><input id="njHours" type="number" min="0" step="0.5" placeholder="Hours"><input id="njRate" type="number" min="0" step="1" placeholder="$ / hour"></div></div></div>
+  <h3>Before photos</h3><input type="file" id="njPhotos" accept="image/*" multiple>
+  <p class="small">Photos stay with this job, so you can show the before and after.</p>
+  <div id="njMsg"></div>
+  <button class="btn-primary" onclick="saveJob(false)">Save as draft (Lead)</button>
+  <p style="margin-top:8px"><button class="btn-navy" style="width:100%" onclick="saveJob(true)">Send estimate to customer →</button></p>
+  <p class="note">This version saves the estimate in the app for you to send on. It does not text or email the customer by itself yet.</p></div>`;
+}
+let voiceBlob=null;
+function recordVoice(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){$('#voiceStatus').textContent='Voice recording is not available in this browser.';return}
+  $('#voiceStatus').textContent='Recording… tap again to stop (max 60 seconds).';
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const rec=new MediaRecorder(stream); const chunks=[];
+    rec.ondataavailable=e=>chunks.push(e.data);
+    rec.onstop=()=>{voiceBlob=new Blob(chunks,{type:'audio/webm'});stream.getTracks().forEach(t=>t.stop());$('#voiceStatus').textContent='Voice note saved with this job ✓';};
+    rec.start(); setTimeout(()=>{if(rec.state==='recording')rec.stop()},60000);
+    $('#voiceStatus').onclick=()=>{if(rec.state==='recording')rec.stop()};
+  }).catch(()=>{$('#voiceStatus').textContent='Could not start the microphone. You can type the details instead.'});
+}
+function readPhotos(input,cb){
+  const files=[...(input.files||[])]; if(!files.length) return cb([]);
+  const out=[]; let done=0;
+  files.forEach(f=>{const r=new FileReader();r.onload=()=>{out.push(r.result);if(++done===files.length)cb(out)};r.onerror=()=>{if(++done===files.length)cb(out)};r.readAsDataURL(f)});
+}
+function saveJob(send){
+  const customer=$('#njCustomer').value.trim(), title=$('#njTitle').value.trim();
+  if(!customer||!title){$('#njMsg').innerHTML='<p style="color:#c0392b">Add the customer name and what needs doing first.</p>';return}
+  const price=Number($('#njPrice').value)||0;
+  readPhotos($('#njPhotos'),photos=>{
+    const doneVoice=vn=>{
+      const j={id:uid(),customer,phone:$('#njPhone').value.trim(),address:$('#njAddress').value.trim(),trade:$('#njTrade').value,title,desc:$('#njDesc').value.trim(),status:send?'Estimate Sent':'Lead',date:$('#njDate').value,materials:Number($('#njMaterials').value)||0,hours:Number($('#njHours').value)||0,rate:Number($('#njRate').value)||0,price,deposit:0,paidAmount:0,photosBefore:photos,photosAfter:[],items:[],voiceNote:vn||null,createdAt:Date.now()};
+      jobs.push(j);save('cc_jobs',jobs);openJob=j;tab='job';render();
+    };
+    if(voiceBlob){const r=new FileReader();r.onload=()=>doneVoice(r.result);r.readAsDataURL(voiceBlob)} else doneVoice(null);
+  });
+}
+/* ---------- Job detail ---------- */
+function jobView(){
+  const j=openJob; if(!j){tab='jobs';render();return}
+  const p=profit(j);
+  return `<div class="card"><p><a href="#" onclick="showTab('jobs');return false">← Back to jobs</a></p>
+  <h2>${esc(j.title)}</h2><p class="muted">${esc(j.customer)} · ${esc(j.phone)} · ${esc(j.address)}<br>${esc(j.trade)} · ${j.date?'📅 '+esc(j.date):'No date set yet'}</p>
+  <p><span class="pill ${j.status.toLowerCase().replace(' ','')}">${esc(j.status)}</span></p>
+  <p>${esc(j.desc)||'No details written yet.'}</p>
+  ${j.voiceNote?`<p><audio controls src="${j.voiceNote}"></audio><br><span class="small">Voice note from the job.</span></p>`:''}
+  <h3>Money</h3>
+  <p>Price: <b>${money(j.price)}</b> · Materials: ${money(j.materials)} · Your time: ${j.hours} hrs × ${money(j.rate)} = ${money((j.hours||0)*(j.rate||0))}</p>
+  <p>Profit on this job: <span class="profit ${p>=0?'good':'bad'}">${money(p)}</span> ${p>=0?'— the job made money.':'— this job would lose money at this price. Check the price or the costs.'}</p>
+  <p>Paid so far: ${money(j.paidAmount)} · Still owed: <b>${money(owed(j))}</b></p>
+  <h3>Line items</h3>
+  ${j.items.length?j.items.map((it,i)=>`<p>${esc(it.label)} — ${money(it.amount)} ${it.guessed?'<span class="guess">⚠️ Guessed — check before sending</span>':''} <button class="btn-small btn-ghost" onclick="removeItem(${i})">Remove</button></p>`).join(''):'<p class="small">No line items yet.</p>'}
+  <button class="btn-small btn-ghost" onclick="addSuggested()">＋ Add suggested line items (marked as guesses)</button>
+  <div class="grid2"><div><input id="liLabel" placeholder="Line item, e.g. Labour — 2 hours"></div><div><input id="liAmount" type="number" placeholder="$ amount"></div></div>
+  <button class="btn-small btn-navy" onclick="addItem()">Add line item</button>
+  <h3>Status</h3><select id="jobStatus" onchange="setStatus(this.value)">${STATUSES.map(s=>`<option ${s===j.status?'selected':''}>${s}</option>`).join('')}</select>
+  <p><button class="btn-primary" onclick="openInvoice('${j.id}')">Turn into invoice — one tap →</button></p>
+  <p><button class="btn-navy" style="width:100%" onclick="markApproved()">Customer approved ✓</button></p>
+  <h3>Photos</h3><p><b>Before</b></p><div class="photos">${j.photosBefore.map(p=>`<img src="${p}" alt="Before photo">`).join('')||'<span class="small">No before photos yet.</span>'}</div>
+  <p><b>After</b></p><div class="photos">${j.photosAfter.map(p=>`<img src="${p}" alt="After photo">`).join('')||'<span class="small">No after photos yet.</span>'}</div>
+  <label>Add after photos</label><input type="file" accept="image/*" multiple onchange="addAfterPhotos(this)">
+  <p><button class="btn-danger btn-small" onclick="deleteJob()">Delete this job</button></p></div>`;
+}
+function persist(){save('cc_jobs',jobs);render()}
+function addSuggested(){const j=openJob;(SUGGESTED[j.trade]||SUGGESTED['Other']).forEach(([label,amount])=>j.items.push({label,amount,guessed:true}));persist()}
+function addItem(){const j=openJob;const l=$('#liLabel').value.trim(),a=Number($('#liAmount').value);if(!l||!a)return;j.items.push({label:l,amount:a});persist()}
+function removeItem(i){openJob.items.splice(i,1);persist()}
+function setStatus(s){openJob.status=s;persist()}
+function markApproved(){openJob.status='Approved';persist()}
+function deleteJob(){if(!confirm('Delete this job? This cannot be undone.'))return;jobs=jobs.filter(x=>x.id!==openJob.id);openJob=null;persist();showTab('jobs')}
+function addAfterPhotos(input){readPhotos(input,photos=>{openJob.photosAfter.push(...photos);persist()})}
+/* ---------- Invoice ---------- */
+function invoiceView(){
+  const j=openJob; if(!j){tab='jobs';render();return}
+  const dep=j.deposit||Math.round((j.price||0)/2);
+  return `<div class="card"><p><a href="#" onclick="tab='job';render();return false">← Back to job</a></p>
+  <h2>Invoice — ${esc(j.title)}</h2>
+  <p class="muted">To: ${esc(j.customer)} · ${esc(j.address)}<br>From: ${esc(user.biz||user.name)} · ${esc(user.email)}</p>
+  <p>Job price: <b>${money(j.price)}</b></p>
+  ${j.items.map(it=>`<p>${esc(it.label)} — ${money(it.amount)} ${it.guessed?'⚠️ guessed — check':''}</p>`).join('')}
+  <p>Deposit (50%): <b>${money(dep)}</b> · Remaining after deposit: ${money(Math.max(0,(j.price||0)-dep))}</p>
+  <p>Paid so far: ${money(j.paidAmount)} · <b>Still owed: ${money(owed(j))}</b></p>
+  <h3>Record a payment</h3>
+  <p class="small">V1 records the payment here. Live card/bank payments are not wired up yet — when they are, Stripe takes about 2.9% + 30¢ per payment.</p>
+  <label>Amount received ($)</label><input id="payAmt" type="number" min="0" step="1" placeholder="e.g. 120">
+  <label>How did they pay?</label><select id="payHow"><option>Cash</option><option>Card (in person)</option><option>Bank transfer</option><option>Check</option></select>
+  <button class="btn-primary" onclick="recordPayment()">Record payment</button>
+  <p style="margin-top:10px"><button class="btn-navy" style="width:100%" onclick="markPaidInFull()">Mark paid in full ✓</button></p>
+  <p><button class="btn-ghost" style="width:100%" onclick="window.print()">Print / save as PDF</button></p>
+  <p class="note">This website does not collect payment or deposits by itself in v1. The customer pays you directly, and you record it here.</p></div>`;
+}
+function recordPayment(){const j=openJob;const a=Number($('#payAmt').value);if(!a)return;j.paidAmount=(Number(j.paidAmount)||0)+a;if(owed(j)<=0)j.status='Paid';persist();tab='invoice';render()}
+function markPaidInFull(){openJob.paidAmount=openJob.price;openJob.status='Paid';persist();tab='invoice';render()}
+/* ---------- Calendar / customers / plan ---------- */
+function calendarView(){
+  const byDate={}; jobs.forEach(j=>{if(j.date){(byDate[j.date]=byDate[j.date]||[]).push(j)}});
+  const dates=Object.keys(byDate).sort();
+  return `<div class="card"><h2>Calendar — this week &amp; coming up</h2>
+  <p class="small">Simple day list, no crew dispatch. Tap a job to open it.</p>
+  ${dates.length===0?'<p>No jobs have a date yet. Add a date when you make a job.</p>':
+   dates.map(d=>`<h3>${esc(d)}</h3>`+byDate[d].map(j=>`<p><b>${esc(j.title)}</b> — ${esc(j.customer)} · ${esc(j.status)} · ${money(j.price)} <button class="btn-small btn-ghost" onclick="openJobId('${j.id}')">Open</button></p>`).join('')).join('')}
+  </div>`;
+}
+function customersView(){
+  const map={}; jobs.forEach(j=>{const k=j.customer.toLowerCase();map[k]=map[k]||{name:j.customer,phone:j.phone,address:j.address,last:[],count:0};map[k].last.push(j.title);map[k].count++});
+  const list=Object.values(map);
+  return `<div class="card"><h2>Customers</h2><p class="small">Name, address, phone, and what was done last time — all in one list.</p>
+  ${list.length===0?'<p>No customers yet. They appear here once you add a job.</p>':
+   list.map(c=>`<div class="job"><b>${esc(c.name)}</b> · ${esc(c.phone||'')}<br><span class="muted">${esc(c.address||'')}</span><br>Jobs: ${c.count} · Last: ${esc(c.last[c.last.length-1]||'')}</div>`).join('')}
+  </div>`;
+}
+function planView(){
+  const left=Math.max(0,FREE_LIMIT-jobsThisMonth().length);
+  return `<div class="card"><h2>Your plan — ${isPaid()?'Paid':'Free'}</h2>
+  <p>${isPaid()?'You are on Paid — unlimited jobs. Thank you.':'You are on Free — '+left+' of '+FREE_LIMIT+' jobs left this month.'}</p></div>
+  <div class="card"><h2>Free — $0</h2><ul class="check"><li>5 jobs a month</li><li>Send quotes, get approval</li><li>Turn quotes into invoices</li><li>Record payments &amp; see profit per job</li><li>Before &amp; after photos</li><li>Customer list &amp; simple calendar</li></ul></div>
+  <div class="card"><h2>Paid — $${FOUNDING}/month early, $${REGULAR}/month regular</h2>
+  <p class="small">Planned price — not final, and no charge today.</p>
+  <ul class="check"><li>Unlimited jobs</li><li>Missed-call text-back</li><li>Late-payment reminders</li><li>Automatic review asks after a paid job</li><li>Full calendar &amp; customer list</li></ul>
+  ${isPaid()?'<p><b>Paid is active on this account.</b></p>':`<button class="btn-primary" onclick="upgrade()">Upgrade to Paid — $${FOUNDING}/month early price</button>
+  <p class="small" id="upMsg"></p>`}</div>
+  <div class="card"><h2>About payments</h2><p class="small">When live card payments are added, Stripe takes about 2.9% + 30¢ per customer payment. That is Stripe's cut, separate from your subscription.</p></div>`;
+}
+function upgrade(){
+  $('#upMsg').innerHTML='<b>Paid is coming soon — no charge today.</b> We have noted you want the early $'+FOUNDING+'/month price. We will tell you as soon as upgrades are live. Nothing has been charged.';
+}
+function exportCSV(){
+  const rows=[['Customer','Phone','Address','Trade','Job','Status','Date','Price','Materials','Hours','Rate','Paid','Profit']];
+  jobs.forEach(j=>rows.push([j.customer,j.phone,j.address,j.trade,j.title,j.status,j.date,j.price,j.materials,j.hours,j.rate,j.paidAmount,profit(j).toFixed(2)]));
+  const csv=rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='contractor-corner-jobs.csv';a.click();
+}
+render();
+</script>
+</body>
+</html>
